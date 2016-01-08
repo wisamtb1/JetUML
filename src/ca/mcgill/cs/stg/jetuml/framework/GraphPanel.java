@@ -670,6 +670,30 @@ public class GraphPanel extends JPanel
 			}
 			else if(aDragMode == DragMode.DRAG_MOVE)
 			{
+				// TODO Move this to a method
+				// TODO This does not work properly with undo
+				boolean canAdd = true;
+				for( GraphElement element : aSelectedElements )
+				{
+					if( element instanceof Node )
+					{
+						if( !aGraph.canChangeParentIfMovedTo((Node)element, mousePoint))
+						{
+							canAdd = false;
+							break;
+						}
+					}
+				}
+				if( canAdd )
+				{
+					for( GraphElement element : aSelectedElements )
+					{
+						if( element instanceof Node )
+						{
+							aGraph.reassignParent((ChildNode)element, mousePoint);
+						}
+					}
+				}
 				aGraph.layout();
 				setModified(true);
 				aModListener.endTrackingMove(aGraph, aSelectedElements);

@@ -58,6 +58,27 @@ public abstract class Graph
 		aModListener = new GraphModificationListener();
 		aNeedsLayout = true;
 	}
+	
+	/**
+	 * True if it would make sense (according to graph-specific
+	 * semantics) to change the parent of pNode if it is moved 
+	 * to location pPoint. Returns false by default.
+	 * @param pNode The node to test.
+	 * @param pPoint The point where the node is moved.
+	 * @return True if we should assign a new parent to the node.
+	 */
+	public boolean canChangeParentIfMovedTo(Node pNode, Point2D pPoint)
+	{
+		return false;
+	}
+	
+	/**
+	 * Updates pNode to have as parent whatever node is a pPoint.
+	 * @param pNode The node to reassign
+	 * @param pPoint The point where the parent should be.
+	 */
+	public void reassignParent(ChildNode pNode, Point2D pPoint)
+	{}
 
 	/**
 	 * Adds the modification listener.

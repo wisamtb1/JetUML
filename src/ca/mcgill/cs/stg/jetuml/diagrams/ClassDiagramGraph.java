@@ -39,6 +39,7 @@ import ca.mcgill.cs.stg.jetuml.graph.Node;
 import ca.mcgill.cs.stg.jetuml.graph.NoteEdge;
 import ca.mcgill.cs.stg.jetuml.graph.NoteNode;
 import ca.mcgill.cs.stg.jetuml.graph.PackageNode;
+import ca.mcgill.cs.stg.jetuml.graph.ParentNode;
 
 /**
  *  A UML class diagram.
@@ -139,6 +140,26 @@ public class ClassDiagramGraph extends Graph
 				return deeperContainer;
 			}
 		}
+	}
+	
+	@Override
+	public boolean canChangeParentIfMovedTo(Node pNode, Point2D pPoint)
+	{
+		if( !(pNode instanceof ChildNode))
+		{
+			return false;
+		}
+		ParentNode parent = ((ChildNode)pNode).getParent();
+		PackageNode container = findContainer(aRootNodes, pPoint);
+		return container != null && parent != container && pNode != container;
+	}
+	
+	@Override
+	public void reassignParent(ChildNode pNode, Point2D pPoint)
+	{
+		PackageNode container = findContainer(aRootNodes, pPoint);
+		assert container != null;
+		container.addChild(pNode);
 	}
 	
 	@Override
