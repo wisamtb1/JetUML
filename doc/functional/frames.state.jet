@@ -6,10 +6,15 @@
     <void id="Rectangle2D$Double0" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
+      <p> the best project has been ever wirte </p>
       <void method="set">
        <object idref="Rectangle2D$Double0"/>
        <double>90.0</double>
-      </void>
+     <float>  90.0 </float>
+     <java version ="1.7.0.89" class ="java.beans.XMLDecoder">
+     <void method="addClass">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.CircularStateNode" id="CircularStateNode0">
+     </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
